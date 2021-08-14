@@ -2,6 +2,7 @@
 using namespace std;
 const int STACKS = 10;
 int score = 500;
+int counter = 0;
 vector<stack<int>> grid;
 vector<stack<int>> temp_grid;
 int cards[13] = {1,2,3,4,5,6,7,8,9,10,11,12,13};
@@ -256,6 +257,7 @@ void delete_win(int idx){
     for(int i = 0; i < 13; i++){
         grid[idx].pop();
     }
+    counter ++;
 }
 
 
@@ -264,7 +266,7 @@ void play(){
     generate_Game();
     print_grid();
     int from,to,index;
-    while(score != 0){
+    while(score != 0 && counter != 8){
         take_input(from,to,index);
         move_play(from,to,index);
         print_grid();
@@ -274,6 +276,10 @@ void play(){
             print_grid();
         }
     }
+    if(counter == 8)
+        cout<<"YOU WIN :) ";
+    else
+        cout<<"YOU LOSE :(";
 }
 
 int main()
